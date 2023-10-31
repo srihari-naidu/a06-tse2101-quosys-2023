@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Entry Form</title>
+  <style>
+    /* Form styles */
+    form {
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #ccc;
+    }
+    /* Input styles */
+    input[type=text], input[type=date], input[type=number] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+    }
+    /* Label styles */
+    label {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    /* Submit button styles */
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <form action="" method="post">
+    {% csrf_token %}
+
+
+    <label for="quote_id">Quote ID:</label>
+    <input type="text" id="quote_id" name="quote_id"><br><br>
+
+    <label for="salesstaff_id">Sales ID:</label>
+    <input type="text" id="salesstaff_id" name="salesstaff_id"><br><br>
+
+    <label for="cust_id">Customer ID:</label>
+    <input type="text" id="cust_id" name="cust_id"><br><br>
+
+    <label for="pr_id">Request ID:</label>
+    <input type="text" id="pr_id" name="pr_id"><br>
+
+    <label for="qitem">Item:</label>
+    <input type="text" id="qitem" name="qitem"><br><br>
+
+    <label for="quot_date">Date:</label>
+    <input type="date" id="quot_date" name="quot_date"><br><br>
+
+    <label for="quo_tprice">Price:</label>
+    <input type="text" id="quo_tprice" name="quo_tprice"><br><br>
+
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status"><br><br>
+    
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>

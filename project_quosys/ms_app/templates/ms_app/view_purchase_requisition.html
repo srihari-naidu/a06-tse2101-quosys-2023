@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Purchase Requisition</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>View Purchase Requisition</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>PR ID</th>
+                <th>Customer ID</th>
+                <th>PR Item ID</th>
+                <th>PR Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for requisition in pr_data %}
+                <tr>
+                    <td>{{ requisition.purchase_id }}</td>
+                    <td>{{ requisition.customer_id}}</td>
+                    <td>{{ requisition.pitem_id }}</td>
+                    <td>{{ requisition.pr_date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

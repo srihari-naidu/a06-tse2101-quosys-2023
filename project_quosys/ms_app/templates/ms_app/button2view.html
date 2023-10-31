@@ -1,0 +1,45 @@
+{% extends "ms_app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+
+
+<form action = "report">
+    
+        <u1>
+            <div class ="col-md-6">
+                <h3 class="page-header text-primary text-center">Purchase Orders List</h3>
+                <table class = "table table-bordered">
+                    <thread>
+
+                        
+                                <tr>
+                                    <th>PO_id</th>
+                                    <th>finance_id</th>
+                                    <th>PO_date</th>
+                                    <th>PO_tprice</th>
+                                    
+    {% for Purchaseorderreport in my_data %}
+    <tr>
+        
+        <td>{{ Purchaseorderreport.PO_id }}</td>
+        <td>{{ Purchaseorderreport.finance_id }} </td>
+        <td>{{ Purchaseorderreport.PO_date }} </td>
+        <td>{{ Purchaseorderreport.PO_tprice }} </td>
+                </thread>
+    </tr>
+    {% endfor %}
+           
+          </select> <br><br>
+          <input type = "submit" value = "Detailed View">
+
+
+
+
+
+        
+
+
+
+{% endblock %}

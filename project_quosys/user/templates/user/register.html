@@ -1,0 +1,20 @@
+{% extends 'quotation_system/base.html' %}
+
+{% block title %}Register{% endblock title %}
+
+{% block content %}
+<div class="header-bar">
+    <h1>Register</h1>
+</div>
+
+<div class="card-body">
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <input style="margin-top: 40px; margin-bottom: 40px" class="button" type="Submit" value="Register">
+    </form>
+
+    <p>Already have an user? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock content %}

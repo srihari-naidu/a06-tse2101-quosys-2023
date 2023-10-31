@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Sales</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quotation Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Quote ID</th>
+                <th>Sales ID</th>
+                <th>Customer ID</th>
+                <th>Request ID</th>
+                <th>Item</th>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales_data %}
+            <tr>
+                <td>{{ sale.quote_id }}</td>
+                <td>{{ sale.salesstaff_id }}</td>
+                <td>{{ sale.cust_id }}</td>
+                <td>{{ sale.pr_id }}</td>
+                <td>{{ sale.qitem }}</td>
+                <td>{{ sale.quot_date }}</td>
+                <td>{{ sale.quo_tprice }}</td>
+                <td>{{ sale.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

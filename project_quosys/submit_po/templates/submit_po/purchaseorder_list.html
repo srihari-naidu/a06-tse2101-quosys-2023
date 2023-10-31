@@ -1,0 +1,49 @@
+{% extends 'quotation_system/base.html' %}
+
+{% block title %}Purchase Orders{% endblock title %}
+
+{% block content %}
+<div class="header-bar">
+    <div>
+        <h1>Hello, {{request.user.first_name|title}}!</h1>
+        {% if count %}
+        <h3 style="margin-bottom:20px">Here's your &nbsp;<i>{{count}}</i>&nbsp; Purchase Order{{count|pluralize:"s"}}.</h3>
+        {% else %}
+        <h3 style="margin-bottom:20px">Let's get to submitting your Purchase Orders!</h3>
+        {% endif %}
+    </div>
+    <div>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'logout' %}">&#8592; Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+     </div>
+</div>
+
+<div id="search-add-wrapper">
+    <form method="GET" style="display: flex;">
+        <input style="width: 100%" type="text" name="search-area" value="{{search}}">
+        <input style="width: 30%; padding:0" class="button" type="submit" value="Search">
+    </form>
+    <a id="add-link" href="{% url 'po-create'%}">&#x2b;</a>
+</div>
+
+<div class="pos-list-wrapper">
+    {% for po in pos %}
+        <div class="pos-wrapper">
+            <div class="po-name">
+                <a href="{% url 'po' po.id %}">{{po}}</a>
+            </div>
+            <a class="edit-link" href="{% url 'po-update' po.id%}">&#9998;</a>
+            <a class="delete-link" href="{% url 'po-delete' po.id%}">&#215;</a>
+        </div>
+    {% empty %}
+        <div class="pos-wrapper" style="padding:15px">
+            <div class="po-name">
+                <h4>We couldn't find any Purchase Orders by you.</h4>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}
