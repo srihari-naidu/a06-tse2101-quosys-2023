@@ -1,0 +1,52 @@
+<html>
+   
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    {% csrf_token %}
+                    <input type="hidden" name="quote_id" value="{{ data.quote_id }}">
+        <title>Approve Quotation</title>
+                   
+                    
+                    <div class = "form-group">
+                        <label>quote_id</label>
+                        <input type ="text" class = "form-control" value ="{{data.quote_id}}" readonly name ="quote_id">
+                    </div>
+                    <div class = "form-group">
+                        <label>salesstaff_id</label>
+                        <input type ="text" class = "form-control" value ="{{data.salesstaff_id}}"readonly name ="salesstaff_id">
+                    </div>
+                    <div class = "form-group">
+                        <label>cust_id</label>
+                        <input type ="text" class = "form-control" value ="{{data.cust_id}}" readonly name ="cust_id">
+                    </div>
+                    <div class = "form-group">
+                        <label>pr_id</label>
+                        <input type ="text" class = "form-control" value ="{{data.pr_id}}" readonly name ="pr_id">
+                    </div>
+                    <div class = "form-group">
+                        <label>qitem</label>
+                        <input type ="text" class = "form-control" value ="{{data.qitem}}" readonly name ="qitem_id">
+                    </div>
+                    <div class = "form-group">
+                        <label>quot_date</label>
+                        <input type ="text" class = "form-control" value ="{{data.quot_date}}" readonly name ="quot_date">
+                    </div>
+                    <div class = "form-group">
+                        <label>quo_tprice</label>
+                        <input type ="text" class = "form-control" value ="{{data.quo_tprice}}" readonly name ="quo_tprice">
+                    </div>
+                    <div class = "form-group">
+                        <label>status</label>
+                        <input type ="text" class = "form-control" value ="{{data.status}}" name ="status">
+                    </div>
+                <input type = "submit" value ="Update" class = "btn btn-primary btn-block">
+            </form>
+        </div>
+    </div>
+        </body>
+                </html>

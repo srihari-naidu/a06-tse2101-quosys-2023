@@ -1,0 +1,47 @@
+{% extends "ms_app/layout.html" %}
+
+{% block content %}
+
+<h1>{{ title }}.</h1>   
+
+      
+    <head>
+    <body>
+        <div class = "container-fluid">
+            <div class = "col-md-offset-1 col-md-4">
+                <form action = "approve" method = "GET" autocomplete = "off">
+    <div class ="col-md-7">
+        <h3 class="page-header text-primary text-center">Quotation List</h3>
+        <table class = "table table-bordered">
+            <thread>
+                <tr>
+                    <th>quote_id</th>
+                    <th>salesstaff_id</th>
+                    <th>cust_id</th>
+                    <th>pr_id</th>
+                    <th>qitem_id</th>
+                    <th>quot_date</th>
+                    <th>quo_tprice</th>
+                    <th>status</th>
+                    <th>Update</th>
+{% for Sale in my_data %}
+<tbody>
+<tr>
+    
+    <td>{{ Sale.quote_id }}</td>
+    <td>{{ Sale.salesstaff_id }} </td>
+    <td>{{ Sale.cust_id }} </td>
+    <td>{{ Sale.pr_id }} </td>
+    <td>{{ Sale.qitem}} </td>
+    <td>{{ Sale.quot_date }} </td>
+    <td>{{ Sale.quo_tprice }} </td>
+    <td>{{ Sale.status }} </td>
+    <td><a class = "btn btn-success" href="{% url 'approve' Sale.quote_id %}">approve</a></td>
+
+            </thread>
+</tr>
+</tbody>
+{% endfor %}
+          
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "ms_app/layout.html" %}
+
+{% block content %}
+
+    <h1>Select time period</h1>
+    <u1>
+        <div class ="col-md-6">
+            <h3 class="page-header text-primary text-center">Purchase Order Report</h3>
+            
+            <form method ="POST" >
+                {% csrf_token %}
+            From : <input type = "date" name = "Fromdate"/>
+           To : <input type = "date" name = "Todate"/>
+           <input type = "submit" value ="Search"/>
+            <table class = "table table-bordered">
+                <thread>
+                    <th>PO_id</th>
+                    <th>finance_id</th>
+                    <th>PO_date</th>
+                    <th>PO_tprice</th>
+
+{% for Purchaseorderreport in displaydata %}
+<tr>
+    
+    <td>{{ Purchaseorderreport.PO_id }}</td>
+    <td>{{ Purchaseorderreport.finance_id }} </td>
+    <td>{{ Purchaseorderreport.PO_date }} </td>
+    <td>{{ Purchaseorderreport.PO_tprice }} </td>
+            </thread>
+</tr>
+{% endfor %}
+
+</form>
+
+{% endblock %}

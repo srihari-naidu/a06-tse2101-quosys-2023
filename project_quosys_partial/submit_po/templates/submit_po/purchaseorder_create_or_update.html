@@ -1,0 +1,122 @@
+{% extends 'quotation_system/base.html' %}
+
+{% block title %}Submit Purchase Order{% endblock title %}
+
+{% block content %}
+
+<div class="header-bar">
+    <a href="{% url 'pos' %}">&#8592; Back</a>
+</div>
+
+<div class="card-body">
+    <form enctype="multipart/form-data" method="POST" id="po_form">
+        {% csrf_token %}
+        <!-- po form start -->
+        <div>
+            <div>
+                <h3>Delivery Address</h4>
+            </div>
+            <div>
+                {{form.as_p}}
+            </div>
+        </div>
+        <!-- po form end -->
+    
+    
+        <!-- inline form for POItem start -->
+    
+        <!-- EXPLAINING with named_formsets.poitems as formset -->
+        <!-- Note: named_formsets is used in get_context_data function in views.py -->
+        <!-- Note: here poitems is our POItemFormSet name, used in get_named_formsets function in views.py -->
+        <div class="inline-form">
+        {% with named_formsets.poitems as formset %}
+            {{ formset.management_form }}
+            <script type="text/html" id="poitems-template">  // id="inlineformsetname-template"
+                // id='inlineformsetname-__prefix__' 
+                <tr id="poitems-__prefix__" class= hide_all>
+                    {% for fields in formset.empty_form.hidden_fields %}
+                        {{ fields }}
+                    {% endfor %}
+                
+                    {% for fields in formset.empty_form.visible_fields %}
+                        <td>{{fields}}</td>
+                    {% endfor %}
+                </tr>
+            </script>
+
+            <div>
+                <div>
+                    <h3 style="padding-top:50px">Items</h4>
+                </div>
+                <table>
+                    <thead>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                    </thead>
+                    <tbody id="item-poitems">  <!-- id="item-inlineformsetname" -->
+                        <!-- formset non forms errors -->
+                        {% for error in formset.non_form_errors %}
+                            <span style="color: red">{{ error }}</span>
+                        {% endfor %}
+                        {% for formss in formset %}
+                            {{ formss.management_form }}
+                            <tr id="poitems-{{ forloop.counter0 }}" class= hide_all>  <!-- id="inlineformsetname-counter" -->
+                                {{ formss.id }}
+                                {% for field in formss.visible_fields %}
+                                    <td>
+                                        {{field}}
+                                        {% for error in field.errors %}
+                                            <span style="color: red">{{ error }}</span>
+                                        {% endfor %}
+                                        
+                                        {% comment %} {{ field.DELETE }} {% endcomment %}
+                                    </td>
+                                {% endfor %}
+                                {% comment %} for delete {% endcomment %}
+                                {% if formss.instance.pk %}
+                                    <td>
+                                        <a href="{% url 'poitem-delete' formss.instance.pk %}" type="button" class="delete-link" style="margin-left:15px">&#215;</a>
+                                    </td>
+
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div style="display:block; padding:20px;text-align: center; margin-top:15px">
+                    <a href="#" id="add-link" class="add-poitems" >&#x2b;</a> <!-- id="add-inlineformsetname-button" -->
+                </div>
+            </div>
+            
+            {% endwith %}
+            <!-- inline form for POItem end -->
+    
+            <div>
+                <button class="button" type="submit">Submit</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+<script>
+  $(document).ready(function() {
+    // when user clicks add more btn of poitems
+      $('.add-poitems').click(function(ev) {
+          ev.preventDefault();
+          var count = $('#item-poitems').children().length;
+          var tmplMarkup = $('#poitems-template').html();
+          var compiledTmpl = tmplMarkup.replace(/__prefix__/g, count);
+          $('#item-poitems').append(compiledTmpl);
+  
+          // update form count
+          $('#id_poitems-TOTAL_FORMS').attr('value', count+1);
+      });
+  });
+</script>
+        
+{% endblock content %}

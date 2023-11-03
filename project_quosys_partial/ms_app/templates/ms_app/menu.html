@@ -1,0 +1,57 @@
+﻿{% extends "ms_app/layout.html" %}
+
+{% block content %}
+
+<div>
+    <br />
+    {% if is_Manager %}
+         <h2>Manager Menu</h2>
+    {% elif is_Salesman %}
+         <h2>Salesman Menu</h2>
+    {% endif %}
+
+    <br />
+    <table>
+    {% if is_Manager %}            
+        <tr><td>
+    <form class="margintop" action='button1' method='GET'>
+        <button type="submit" class="btn btn-info">View and Approve Quotation</button><br />
+        
+    </form>
+        </td></tr>
+            
+        <tr><td>
+    <form class="margintop" action='button2view' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Purchase Order Report</button><br />
+    </form>
+        </td></tr>
+    {% elif is_Salesman %}
+        <tr><td>
+    <form class="margintop" action='CreateQuotation' method='GET'>
+        <button type="submit" class="btn btn-info">Create Quotation</button><br />
+    </form>
+        </td></tr>
+
+        <tr><td>
+    <form class="margintop" action='ViewQuotation' method='GET'>
+        <button type="submit" class="btn btn-outline-info waves-effect">View Quotation</button><br />
+    </form>
+        </td></tr>
+
+        <tr><td>
+            <form class="margintop" action='ViewPurchaseRequisition' method='GET'>
+                <button type="submit" class="btn btn-outline-info waves-effect">View Purchase Requisition</button><br />
+            </form>
+                </td></tr>                  
+    {% else %}            
+
+        <tr><td>
+            <p>Undefined User.</p>
+        </td></tr>
+            
+    {% endif %}            
+    </table>
+</div>
+
+{% endblock %}
+ 

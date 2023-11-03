@@ -1,0 +1,86 @@
+{% extends 'quotation_system/base.html' %}
+
+{% block title %}{{po}}{% endblock title %}
+
+{% block content %}
+<div class="header-bar">
+    <div>
+        <a href="{% url 'pos' %}">&#8592; Back</a>
+        <h1>{{po.company_name}}</h1>
+        
+    </div>
+    <div>
+        <h4 style="margin-right:20px">PO#: {{po.poid}}</h4> 
+        <h4 style="margin-right:20px; text-align: right">{{po.date|date:"d/m/y"}}</h4> 
+     </div>
+</div>
+
+<div class="pos-list-wrapper">
+        <div class="pos-wrapper">
+            <div id="supplier">
+                <h4>SUPPLIER</h4>
+                <p><b>Quo Sys</b></p>
+                <p>70 Bowman St.</p>
+                <p>South Windsor CT, 06074</p>
+                <P>USA</p>
+                <br/>
+                <p><b>Phone No:</b> 800-124-4567</p>
+                <p><b>Email:</b> {{request.user.first_name}}@quosys.com</p>
+            </div>
+            <div id="delivery-address">
+                <h4>DELIVERY ADDRESS</h4>
+                <p><b>{{po.address_line_1}}</b></p>
+                <p>{{po.address_line_2}}</p>
+                <p>{{po.city}}, {{po.zipcode}}</p>
+                <P>{{po.state}}</p>
+                <br/>
+                <p><b>Phone No:</b> {{po.contact_no}}</p>
+                <p><b>Attn:</b> {{po.contact_name|lower}}</p>
+            </div>
+        </div>
+
+        <div class="pos-wrapper">
+            <div>
+                <h4>ITEM NAME</h4>
+                {% for poitem in poitems %}
+                <div>
+                    <p>{{poitem.name}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div>
+                <h4>QTY</h4>
+                {% for poitem in poitems %}
+                <div id="item-quantity">
+                    <p>{{poitem.quantity}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div>
+                <h4>PRICE</h4>
+                {% for poitem in poitems %}
+                <div>
+                    <p>{{poitem.price}}</p>
+                </div>
+                {% endfor %}
+            </div>
+            <div>
+                <h4>TOTAL</h4>
+                {% for poitem in poitems %}
+                <div>
+                    <p>{{poitem.total}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="pos-wrapper">
+            <div>
+                <h4>ORDER TOTAL</h4>
+            </div>
+            <div>
+                <p style="margin-right:8px"><b>{{total}}</b></p>
+            </div>
+        </div>
+</div>
+{% endblock content %}
