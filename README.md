@@ -8,7 +8,7 @@ The Quotation System is a web-based application developed using Django framework
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Contributing](#contributing)
+- [Credits](#credits)
 
 ## Introduction
 
